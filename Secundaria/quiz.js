@@ -57,7 +57,7 @@ const modulos = [
 
 let moduloActual = 0;
 let indice = 0;
-let tiempo = 30;
+let tiempo = 60;
 let intervalo;
 let respondido = false;
 
@@ -69,7 +69,7 @@ const timerEl = document.getElementById("timer");
 
 function iniciarTemporizador() {
   clearInterval(intervalo);
-  tiempo = 30;
+  tiempo = 60;
   timerEl.textContent = "⏱️ " + tiempo;
   intervalo = setInterval(() => {
     tiempo--;
