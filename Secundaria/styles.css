@@ -51,7 +51,7 @@ body {
 /* Logo */
 .logo {
   width: 120px;
-  margin-bottom: 1rem;
+  margin-bottom: 4px;
   animation: flotar 3s infinite ease-in-out;
   filter: drop-shadow(0 0 5px white);
 }
