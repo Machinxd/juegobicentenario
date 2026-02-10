@@ -140,18 +140,24 @@ p {
   }
 }
 
-/* 🔽 Forzar tamaño igual para TODOS los íconos de redes */
-.redes-footer img {
-  width: 18px !important;
-  height: 18px !important;
-  object-fit: contain;
+.redes-footer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.redes-footer a {
+  line-height: 0;        /* quita el espacio raro abajo */
   display: inline-block;
 }
 
-/* Si alguno sigue grande por herencia rara */
-.redes-footer a img {
-  max-width: 18px !important;
-  max-height: 18px !important;
+.redes-footer img {
+  display: block;       /* elimina el espacio/baseline */
+  width: 26px;          /* 👈 un poco más grandes */
+  height: 26px;
+  object-fit: contain;
 }
+
 
 
