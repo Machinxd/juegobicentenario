@@ -140,24 +140,18 @@ p {
   }
 }
 
-.redes-footer {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 8px 0 4px 0;
-}
-
+/* 🔽 Forzar tamaño igual para TODOS los íconos de redes */
 .redes-footer img {
-  width: 18px;     /* 🔽 más pequeño */
-  height: 18px;    /* 🔽 más pequeño */
-  cursor: pointer;
-  opacity: 0.85;   /* un toque más suave */
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  width: 18px !important;
+  height: 18px !important;
+  object-fit: contain;
+  display: inline-block;
 }
 
-.redes-footer img:hover {
-  transform: scale(1.15);
-  opacity: 1;
+/* Si alguno sigue grande por herencia rara */
+.redes-footer a img {
+  max-width: 18px !important;
+  max-height: 18px !important;
 }
 
 
