@@ -61,6 +61,10 @@ let tiempo = 60;
 let intervalo;
 let respondido = false;
 
+let puntaje = 0;
+let totalPreguntas = modulos.reduce((acc, m) => acc + m.preguntas.length, 0);
+let preguntasRespondidas = 0;
+
 const preguntaEl = document.getElementById("pregunta");
 const opcionesEl = document.getElementById("opciones");
 const resultadoEl = document.getElementById("resultado");
@@ -71,12 +75,15 @@ function iniciarTemporizador() {
   clearInterval(intervalo);
   tiempo = 60;
   timerEl.textContent = "⏱️ " + tiempo;
+
   intervalo = setInterval(() => {
     tiempo--;
     timerEl.textContent = "⏱️ " + tiempo;
+
     if (tiempo === 0 && !respondido) {
-      indice++;
-      mostrarPregunta();
+      respondido = true;
+      preguntasRespondidas++;
+      siguiente();
     }
   }, 1000);
 }
@@ -87,6 +94,7 @@ function mostrarPregunta() {
 
   if (indice < modulos[moduloActual].preguntas.length) {
     nivelEl.textContent = "Nivel: " + modulos[moduloActual].nombre;
+
     const actual = modulos[moduloActual].preguntas[indice];
     preguntaEl.textContent = actual.pregunta;
     opcionesEl.innerHTML = "";
@@ -110,15 +118,29 @@ function mostrarPregunta() {
 
 function verificarRespuesta(elegida, correcta, explicacion) {
   if (respondido) return;
+
   respondido = true;
   clearInterval(intervalo);
+  preguntasRespondidas++;
 
   const botones = document.querySelectorAll("#opciones button");
 
   botones.forEach((btn, i) => {
     btn.disabled = true;
-    if (i === correcta) btn.classList.add("opcion-correcta");
+
+    if (i === correcta) {
+      btn.classList.add("opcion-correcta");
+    }
+
+    if (i === elegida && elegida !== correcta) {
+      btn.style.backgroundColor = "#d32f2f";
+      btn.style.color = "white";
+    }
   });
+
+  if (elegida === correcta) {
+    puntaje += 1;
+  }
 
   resultadoEl.classList.remove("oculto");
   resultadoEl.innerHTML = `
@@ -135,12 +157,49 @@ function siguiente() {
 }
 
 function finQuiz() {
+  let totalPreguntas = modulos.reduce((total, modulo) => {
+    return total + modulo.preguntas.length;
+}, 0);
+
+let porcentaje = Math.round((puntaje / totalPreguntas) * 100);
+
+  let mensajeFinal = "";
+  let videoURL = "";
+
+  if (porcentaje >= 80) {
+    mensajeFinal = "🏆 ¡Excelente! Eres un niño patriota!.";
+    videoURL = "https://www.youtube.com/embed/oeqGzOe9v0M";
+  } else if (porcentaje >= 60) {
+    mensajeFinal = "👏 Muy buen trabajo.";
+    videoURL = "https://www.youtube.com/embed/0qYh3Y5Y8pA";
+  } else if (porcentaje >= 35) {
+    mensajeFinal = "👍 Bien, pero puedes mejorar.";
+    videoURL = "https://www.youtube.com/embed/5KJ7Gkq9z9E";
+  } else {
+    mensajeFinal = "📚 Necesitas repasar un poco más.";
+    videoURL = "https://www.youtube.com/embed/V7l9p6k3XzM";
+  }
+
   document.getElementById("quiz-box").innerHTML = `
-    <h2>🎉 Terminaste el Quiz</h2>
-    <p>Gracias por jugar</p>
-    <button class="btn-siguiente" onclick="location.reload()">Reiniciar</button>
+    <div class="final-box">
+      <h2>Terminaste el Quiz</h2>
+      <p class="score">${puntaje} puntos</p>
+      <p>${porcentaje}% de aciertos</p>
+      <p class="mensaje-final">${mensajeFinal}</p>
+
+      <div class="video-container">
+        <iframe 
+          width="100%" 
+          height="250" 
+          src="${videoURL}" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <button class="btn-reiniciar" onclick="window.location.href='secundaria.html'">Ir al inicio 🏠</button>
+
+    </div>
   `;
 }
-
 window.onload = mostrarPregunta;
-
