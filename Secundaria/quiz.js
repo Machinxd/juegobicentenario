@@ -156,50 +156,76 @@ function siguiente() {
   mostrarPregunta();
 }
 
-function finQuiz() {
+function finQuiz() { 
   let totalPreguntas = modulos.reduce((total, modulo) => {
     return total + modulo.preguntas.length;
-}, 0);
+  }, 0);
 
-let porcentaje = Math.round((puntaje / totalPreguntas) * 100);
+  let porcentaje = Math.round((puntaje / totalPreguntas) * 100);
 
   let mensajeFinal = "";
   let videoURL = "";
+  let color = "";
+  let medalla = "";
 
   if (porcentaje >= 80) {
-    mensajeFinal = "🏆 ¡Excelente! Eres un niño patriota!.";
-    videoURL = "https://www.youtube.com/embed/v=oeqGzOe9v0M";
-  } else if (porcentaje >= 60) {
-    mensajeFinal = "👏 Muy buen trabajo.";
-    videoURL = "https://www.youtube.com/embed/v=JzZKFChS4Rw";
-  } else if (porcentaje >= 35) {
-    mensajeFinal = "👍 Bien, pero puedes mejorar.";
-    videoURL = "https://www.youtube.com/embed/v=6AdeFK_h3Vg";
-  } else {
-    mensajeFinal = "📚 Necesitas repasar un poco más.";
-    videoURL = "https://www.youtube.com/embed/v=DSyCmm8rK98";
+    mensajeFinal = "¡Excelente! Eres un niño patriota 🇵🇪";
+    videoURL = "https://www.youtube.com/watch?v=oeqGzOe9v0M";
+    color = "#2e7d32";
+    medalla = "🥇";
+  } 
+  else if (porcentaje >= 60) {
+    mensajeFinal = "Muy buen trabajo 👏";
+    videoURL = "https://www.youtube.com/watch?v=JzZKFChS4Rw";
+    color = "#f9a825";
+    medalla = "🥈";
+  } 
+  else if (porcentaje >= 35) {
+    mensajeFinal = "Bien, pero puedes mejorar 👍";
+    videoURL = "https://www.youtube.com/watch?v=6AdeFK_h3Vg";
+    color = "#ef6c00";
+    medalla = "🥉";
+  } 
+  else {
+    mensajeFinal = "Necesitas repasar un poco más 📚";
+    videoURL = "https://www.youtube.com/watch?v=DSyCmm8rK98";
+    color = "#c62828";
+    medalla = "📖";
   }
 
   document.getElementById("quiz-box").innerHTML = `
-    <div class="final-box">
-      <h2>Terminaste el Quiz</h2>
-      <p class="score">${puntaje} puntos</p>
-      <p>${porcentaje}% de aciertos</p>
-      <p class="mensaje-final">${mensajeFinal}</p>
+    <div class="resultado-box">
 
-      <div class="video-container">
-        <iframe 
-          width="100%" 
-          height="250" 
-          src="${videoURL}" 
-          frameborder="0" 
-          allowfullscreen>
-        </iframe>
+      <div class="medalla">${medalla}</div>
+
+      <h2>Resultado Final</h2>
+
+      <p><strong>${puntaje}</strong> de ${totalPreguntas} correctas</p>
+      <h3 style="color:${color};">${porcentaje}% de aciertos</h3>
+
+      <div class="barra-contenedor">
+        <div class="barra-progreso" 
+             style="width:${porcentaje}%; background:${color};">
+        </div>
       </div>
 
-      <button class="btn-reiniciar" onclick="window.location.href='secundaria.html'">Ir al inicio 🏠</button>
+      <p class="mensaje-final">${mensajeFinal}</p>
+
+      <a href="${videoURL}" 
+         target="_blank" 
+         class="btn-video"
+         style="background:${color};">
+         📺 Ver video recomendado
+      </a>
+
+      <br><br>
+
+      <button class="btn-reiniciar" onclick="window.location.href='secundaria.html'">
+        🏠 Ir al inicio
+      </button>
 
     </div>
   `;
 }
+
 window.onload = mostrarPregunta;
