@@ -168,16 +168,16 @@ let porcentaje = Math.round((puntaje / totalPreguntas) * 100);
 
   if (porcentaje >= 80) {
     mensajeFinal = "🏆 ¡Excelente! Eres un niño patriota!.";
-    videoURL = "https://www.youtube.com/embed/oeqGzOe9v0M";
+    videoURL = "https://www.youtube.com/embed/v=oeqGzOe9v0M";
   } else if (porcentaje >= 60) {
     mensajeFinal = "👏 Muy buen trabajo.";
-    videoURL = "https://www.youtube.com/embed/0qYh3Y5Y8pA";
+    videoURL = "https://www.youtube.com/embed/v=JzZKFChS4Rw";
   } else if (porcentaje >= 35) {
     mensajeFinal = "👍 Bien, pero puedes mejorar.";
-    videoURL = "https://www.youtube.com/embed/5KJ7Gkq9z9E";
+    videoURL = "https://www.youtube.com/embed/v=6AdeFK_h3Vg";
   } else {
     mensajeFinal = "📚 Necesitas repasar un poco más.";
-    videoURL = "https://www.youtube.com/embed/V7l9p6k3XzM";
+    videoURL = "https://www.youtube.com/embed/v=DSyCmm8rK98";
   }
 
   document.getElementById("quiz-box").innerHTML = `
