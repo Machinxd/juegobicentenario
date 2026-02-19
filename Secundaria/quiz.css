@@ -78,7 +78,7 @@ body {
 }
 
 #opciones button.opcion-correcta {
-  background-color: #b71c1c;
+  background-color: #2fd32f;
   color: white;
 }
 
@@ -117,4 +117,54 @@ body {
 
 .btn-siguiente:hover {
   transform: scale(1.05);
+}
+.final-box {
+  text-align: center;
+  animation: entrada 0.6s ease-out;
+}
+
+.final-box h2 {
+  color: #b71c1c;
+  font-size: 1.8rem;
+}
+
+.score {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #d32f2f;
+  margin: 10px 0;
+}
+
+.mensaje-final {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #444;
+}
+
+.btn-reiniciar {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(183, 28, 28, 0.4);
+  transition: 0.3s;
+}
+
+.btn-reiniciar:hover {
+  transform: scale(1.08);
+}
+.video-container {
+  margin-top: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.video-container iframe {
+  border-radius: 15px;
 }
