@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Niño Patriota</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Partículas -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- NAVBAR SUPERIOR -->
+  <header class="navbar">
+    <div class="nav-logo">
+      <img src="assets/nino.png" alt="Logo">
+      <span>Niño Patriota</span>
+    </div>
+  </header>
+  <!-- Partículas -->
+  <div id="particles-js"></div>
+
+  <!-- Contenido principal -->
+  <div class="contenedor">
+    <img src="assets/nino.png" alt="Niño Patriota" class="logo">
+    <h1>Aventuras del Niño Patriota</h1>
+
+    <div class="botones">
+      <div class="proyecto" onclick="vibrar(); ir('quiz.html')">🧠 Quiz Patriota</div>
+      <div class="proyecto" onclick="vibrar(); ir('lecturas.html')">📚 Lecturas</div>
+      <div class="proyecto" onclick="vibrar(); ir('economia.html')">💰 Economía</div>
+      <div class="proyecto" onclick="vibrar(); ir('plantas.html')">🌱 Cuidar Plantas</div>
+      <div class="proyecto" onclick="vibrar(); ir('videos.html')">📷 Videos Educativos</div>
+      <div class="redes-footer">
+  <a href="https://wa.me/51945206564" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  </a>
+
+  <a href="https://www.instagram.com/npatriotabicentenarioperu/" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+  </a>
+
+  <a href="https://www.facebook.com/npatriotabicentenarioperu/?locale=es_LA" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+  </a>
+</div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function ir(pagina) {
+      window.location.href = pagina;
+    }
+
+    function vibrar() {
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+
+    const body = document.body;
+    let colorStep = 0;
+
+    setInterval(() => {
+      const r = 183 + Math.floor(Math.sin(colorStep) * 20);
+      const g = 28 + Math.floor(Math.sin(colorStep + 1) * 5);
+      const b = 28 + Math.floor(Math.sin(colorStep + 2) * 5);
+      body.style.backgroundColor = `rgb(${r},${g},${b})`;
+      colorStep += 0.05;
+    }, 50);
+
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": { "enable": true, "value_area": 800 }
+        },
+        "color": { "value": "#ffffff" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true
+        },
+        "size": {
+          "value": 2.5,
+          "random": true
+        },
+        "move": {
+          "enable": true,
+          "speed": 1,
+          "direction": "none",
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": false },
+          "onclick": { "enable": false }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>

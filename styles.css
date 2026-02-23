@@ -1,0 +1,163 @@
+/* Fondo rojo animado con textura */
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #b71c1c;
+  background-image: radial-gradient(#d32f2f 1px, transparent 1px);
+  background-size: 40px 40px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Partículas */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Contenedor principal */
+.contenedor {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 340px;
+  width: 100%;
+  z-index: 1;
+  box-shadow:
+    0 0 20px rgba(183, 28, 28, 0.6),
+    0 0 30px rgba(183, 28, 28, 0.2);
+  animation: entrada 0.6s ease-out;
+}
+
+/* Animación entrada */
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+  margin-bottom: 4px;
+  animation: flotar 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 5px white);
+}
+
+/* Título */
+h1 {
+  font-family: 'Bungee', sans-serif;
+  color: #b71c1c;
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+/* Descripción */
+p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* Botones */
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proyecto {
+  background-color: white;
+  color: #b71c1c;
+  border: 2px solid #b71c1c;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.proyecto:hover {
+  background-color: #b71c1c;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.proyecto:active {
+  animation: clickPop 0.15s ease;
+}
+
+@keyframes clickPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+
+/* Flotación logo */
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Responsive (ya está compacto pero por si acaso) */
+@media (max-width: 500px) {
+  .contenedor {
+    padding: 1rem;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .proyecto {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
+}
+
+.redes-footer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.redes-footer a {
+  line-height: 0;        /* quita el espacio raro abajo */
+  display: inline-block;
+}
+
+.redes-footer img {
+  display: block;       /* elimina el espacio/baseline */
+  width: 26px;          /* 👈 un poco más grandes */
+  height: 26px;
+  object-fit: contain;
+}
+
+
+
