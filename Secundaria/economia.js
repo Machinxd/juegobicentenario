@@ -375,7 +375,7 @@ function finQuiz() {
          📺 Ver video recomendado
       </a>
 
-      <button class="btn-inicio" onclick="window.location.href='secundaria.html'">
+      <button class="btn-inicio" onclick="window.location.href='index.html'">
         🏠 Ir al inicio
       </button>
     </div>
