@@ -2,187 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lecturas Patriotas</title>
-  <link rel="stylesheet" href="lecturas.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="lecturas.css" />
 </head>
 <body>
-  <div class="contenedor-lectura">
-    <div id="contenido"></div>
+  <div class="quiz-container" id="quiz-box">
+    <div class="quiz-texto">
+      <h1>Lecturas Patriotas</h1>
+
+      <div class="info-bar">
+        <span id="nivel">Nivel</span>
+        <span id="timer">⏱️ 60</span>
+      </div>
+
+      <div id="lectura-container"></div>
+
+      <p id="pregunta"></p>
+      <div id="opciones"></div>
+
+      <div id="resultado" class="oculto"></div>
+    </div>
   </div>
 
-  <script>
-    const bloques = [
-      {
-        texto: `📘 <strong>La Proclamación de la Independencia</strong><br><br>
-        El 28 de julio de 1821, en la Plaza Mayor de Lima, el general José de San Martín proclamó la independencia del Perú. Con el pueblo reunido, alzó la bandera peruana y dijo: “El Perú es desde este momento libre e independiente por la voluntad general de los pueblos y por la justicia de su causa que Dios defiende”.
-        Esta proclamación marcó un momento clave en la historia nacional, dando fin al dominio español y abriendo las puertas de una nueva nación soberana.`,
-        preguntas: [
-          {
-            pregunta: "¿Quién proclamó la independencia del Perú?",
-            opciones: ["Simón Bolívar", "José de San Martín", "José de la Riva Agüero"],
-            correcta: 1
-          },
-          {
-            pregunta: "¿En qué año se proclamó la independencia?",
-            opciones: ["1824", "1821", "1811"],
-            correcta: 1
-          },
-          {
-            pregunta: "¿Dónde se proclamó la independencia?",
-            opciones: ["Cusco", "Plaza Mayor de Lima", "Ayacucho"],
-            correcta: 1
-          },
-          {
-            pregunta: "¿Qué frase dijo San Martín durante la proclamación?",
-            opciones: [
-              "¡Viva el Perú!",
-              "El Perú es desde este momento libre e independiente...",
-              "Independencia o muerte"
-            ],
-            correcta: 1
-          }
-        ]
-      },
-      {
-        texto: `📘 <strong>Simón Bolívar y la Batalla de Ayacucho</strong><br><br>
-        Simón Bolívar fue un gran libertador sudamericano. Después de San Martín, asumió el mando político y militar para continuar la causa libertadora. En 1824, se libró la Batalla de Ayacucho, dirigida por su general Antonio José de Sucre, la cual marcó la derrota definitiva del ejército español.
-        Esta victoria consolidó la independencia del Perú y de toda Sudamérica, siendo Bolívar recordado como uno de los grandes héroes de la libertad.`,
-        preguntas: [
-          {
-            pregunta: "¿Qué batalla consolidó la independencia en 1824?",
-            opciones: ["Junín", "Ayacucho", "Pichincha"],
-            correcta: 1
-          },
-          {
-            pregunta: "¿Quién fue el líder militar en la Batalla de Ayacucho?",
-            opciones: ["Simón Bolívar", "San Martín", "Antonio José de Sucre"],
-            correcta: 2
-          },
-          {
-            pregunta: "¿Qué papel tuvo Bolívar en la independencia?",
-            opciones: [
-              "Ayudó a los españoles",
-              "Fue neutral",
-              "Lideró la campaña final",
-            ],
-            correcta: 2
-          },
-          {
-            pregunta: "¿Qué país no fue liberado por Bolívar?",
-            opciones: ["Colombia", "Chile", "Perú"],
-            correcta: 1
-          }
-        ]
-      },
-      {
-        texto: `📘 <strong>José de la Riva Agüero: Primer Presidente</strong><br><br>
-        En 1823, José de la Riva Agüero se convirtió en el primer presidente del Perú. Aunque no fue elegido democráticamente, su nombramiento representó el primer intento de organizar políticamente al nuevo país independiente. Su gobierno estuvo marcado por conflictos con el Congreso y con el ejército, lo que llevó a su destitución y exilio. 
-        A pesar de ello, Riva Agüero es recordado como el inicio de la historia republicana del Perú.`,
-        preguntas: [
-          {
-            pregunta: "¿En qué año gobernó Riva Agüero?",
-            opciones: ["1821", "1823", "1824"],
-            correcta: 1
-          },
-          {
-            pregunta: "¿Fue elegido democráticamente?",
-            opciones: ["Sí", "No"],
-            correcta: 1
-          },
-          {
-            pregunta: "¿Qué marcó su gobierno?",
-            opciones: [
-              "Paz y estabilidad",
-              "Conflictos con el Congreso y el ejército",
-              "Independencia definitiva",
-            ],
-            correcta: 1
-          },
-          {
-            pregunta: "¿Qué hizo después de ser destituido?",
-            opciones: [
-              "Fue exiliado",
-              "Tomó el poder por la fuerza",
-              "Se convirtió en rey",
-            ],
-            correcta: 0
-          }
-        ]
-      }
-    ];
-
-    let bloqueActual = 0;
-    let preguntaActual = 0;
-    let puntaje = 0;
-    const contenedor = document.getElementById("contenido");
-
-    function mostrarLectura() {
-      const bloque = bloques[bloqueActual];
-      contenedor.innerHTML = `
-        <h2>Lectura Patriota</h2>
-        <p>${bloque.texto}</p>
-        <button onclick="comenzarPreguntas()">Comenzar Preguntas</button>
-      `;
-    }
-
-    function comenzarPreguntas() {
-      mostrarPregunta();
-    }
-
-    function mostrarPregunta() {
-      const bloque = bloques[bloqueActual];
-      const pregunta = bloque.preguntas[preguntaActual];
-
-      let opcionesHTML = "";
-      pregunta.opciones.forEach((op, i) => {
-        opcionesHTML += `<button onclick="verificar(${i})">${op}</button>`;
-      });
-
-      contenedor.innerHTML = `
-        <h3>${pregunta.pregunta}</h3>
-        <div class="opciones">${opcionesHTML}</div>
-      `;
-    }
-
-    function verificar(opcionElegida) {
-      const bloque = bloques[bloqueActual];
-      const pregunta = bloque.preguntas[preguntaActual];
-
-      if (opcionElegida === pregunta.correcta) {
-        puntaje++;
-      }
-
-      preguntaActual++;
-
-      if (preguntaActual < bloque.preguntas.length) {
-        mostrarPregunta();
-      } else {
-        mostrarResultado();
-      }
-    }
-
-    function mostrarResultado() {
-      contenedor.innerHTML = `
-        <h3>✅ Bloque completado</h3>
-        <p>Puntaje acumulado: ${puntaje}</p>
-        ${
-          bloqueActual + 1 < bloques.length
-            ? `<button onclick="siguienteBloque()">Siguiente Lectura</button>`
-            : `<p>🎉 ¡Completaste todas las lecturas!</p>
-               <p>Total de aciertos: ${puntaje} / ${bloques.reduce((s, b) => s + b.preguntas.length, 0)}</p>
-               <button onclick="location.href='index.html'">Volver al Inicio</button>`
-        }
-      `;
-    }
-
-    function siguienteBloque() {
-      bloqueActual++;
-      preguntaActual = 0;
-      mostrarLectura();
-    }
-
-    window.onload = mostrarLectura;
-  </script>
+  <script src="lecturas.js"></script>
 </body>
 </html>
