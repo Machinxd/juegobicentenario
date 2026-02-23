@@ -220,7 +220,7 @@ function finQuiz() {
 
       <br><br>
 
-      <button class="btn-reiniciar" onclick="window.location.href='secundaria.html'">
+      <button class="btn-reiniciar" onclick="window.location.href='index.html'">
         🏠 Ir al inicio
       </button>
 
