@@ -1,64 +1,216 @@
 body {
-  background-color: #b71c1c;
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
+  background-color: #b71c1c;
+  background-image: radial-gradient(#d32f2f 1px, transparent 1px);
+  background-size: 40px 40px;
+  min-height: 100vh;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
-.contenedor-lectura {
-  background: white;
-  padding: 2rem;
+.quiz-container {
+  background: #ffffff;
+  padding: 1.5rem 2rem;
   border-radius: 20px;
-  max-width: 600px;
-  width: 90%;
-  box-shadow: 0 0 25px rgba(183, 28, 28, 0.6);
+  width: 95%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(183, 28, 28, 0.6);
+  animation: entrada 0.6s ease-out;
+  gap: 1rem;
+}
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-texto {
   text-align: center;
+  font-family: 'Georgia', serif;
+  width: 100%;
 }
 
-h2, h3 {
+.quiz-texto h1 {
+  font-size: 1.6rem;
   color: #b71c1c;
+  margin-bottom: 0.5rem;
 }
 
-p {
-  text-align: justify;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+#pregunta {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.4;
 }
 
-button {
-  background-color: #b71c1c;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #a01818;
-}
-
-.opciones {
+#opciones {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 1rem;
 }
 
-.opciones button {
+#opciones button {
   background-color: white;
-  color: #b71c1c;
   border: 2px solid #b71c1c;
+  color: #b71c1c;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
-.opciones button:hover {
+#opciones button:hover {
   background-color: #b71c1c;
   color: white;
+}
+
+#opciones button.opcion-correcta {
+  background-color: #2fd32f;
+  color: white;
+}
+
+#resultado {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.oculto {
+  display: none;
+}
+
+.info-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #b71c1c;
+  margin-bottom: 10px;
+}
+
+.btn-siguiente {
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 12px;
+  box-shadow: 0 6px 15px rgba(183, 28, 28, 0.4);
+}
+
+.btn-siguiente:hover {
+  transform: scale(1.05);
+}
+.final-box {
+  text-align: center;
+  animation: entrada 0.6s ease-out;
+}
+
+.final-box h2 {
+  color: #b71c1c;
+  font-size: 1.8rem;
+}
+
+.score {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #d32f2f;
+  margin: 10px 0;
+}
+
+.mensaje-final {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #444;
+}
+
+.btn-reiniciar {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(183, 28, 28, 0.4);
+  transition: 0.3s;
+}
+
+.btn-reiniciar:hover {
+  transform: scale(1.08);
+}
+.video-container {
+  margin-top: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.video-container iframe {
+  border-radius: 15px;
+}
+.resultado-box {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.medalla {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.barra-contenedor {
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+  margin: 20px 0;
+}
+
+.barra-progreso {
+  height: 100%;
+  transition: width 1s ease;
+}
+
+.btn-video {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: transform 0.2s;
+}
+
+.btn-video:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
