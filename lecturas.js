@@ -209,7 +209,7 @@ function finQuiz() {
   } 
   else if (porcentaje >= 60) {
     mensajeFinal = "Muy buen trabajo 👏";
-    videoURL = "https://www.youtube.com/watch?v=JzZKFChS4Rw";
+    videoURL = "https://www.youtube.com/watch?v=zYlIJsNa4Bk&t=2s";
     color = "#f9a825";
     medalla = "🥈";
   } 
@@ -263,6 +263,7 @@ function finQuiz() {
 
 
 window.onload = mostrarLectura;
+
 
 
 
