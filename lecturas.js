@@ -221,7 +221,7 @@ function finQuiz() {
   } 
   else {
     mensajeFinal = "Necesitas repasar un poco más 📚";
-    videoURL = "https://www.youtube.com/watch?v=DSyCmm8rK98";
+    videoURL = "https://www.youtube.com/watch?v=twTWEuca9kc";
     color = "#c62828";
     medalla = "📖";
   }
@@ -263,3 +263,4 @@ function finQuiz() {
 
 
 window.onload = mostrarLectura;
+
