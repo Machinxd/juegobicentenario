@@ -170,7 +170,7 @@ function finQuiz() {
 
   if (porcentaje >= 80) {
     mensajeFinal = "¡Excelente! Eres un niño patriota 🇵🇪";
-    videoURL = "https://www.youtube.com/watch?v=oeqGzOe9v0M";
+    videoURL = "https://www.youtube.com/watch?v=CfI-bKSTPzg";
     color = "#2e7d32";
     medalla = "🥇";
   } 
