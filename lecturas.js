@@ -215,7 +215,7 @@ function finQuiz() {
   } 
   else if (porcentaje >= 35) {
     mensajeFinal = "Bien, pero puedes mejorar 👍";
-    videoURL = "https://www.youtube.com/watch?v=zYlIJsNa4Bk";
+    videoURL = "https://www.youtube.com/watch?v=TZxaxkIi-80";
     color = "#ef6c00";
     medalla = "🥉";
   } 
@@ -263,5 +263,6 @@ function finQuiz() {
 
 
 window.onload = mostrarLectura;
+
 
 
